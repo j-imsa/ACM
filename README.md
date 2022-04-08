@@ -1,12 +1,12 @@
-# my ACM Problems, Solutions Repo
+# ACM ProbSol
 
-<hr>
+> my repository for acm issues, interview challenges, and solutions utilising pure code, data structures, algorithms, technologies, diagrams, and so on
 
-- Java 8
-- IntelliJ Idea Ultimate Edition
-- Ubuntu 20.04
+### Environment:
 
-<hr>
+- Java 8 (_jdk_1.8.0_221_)
+- IntelliJ Idea (_Ultimate Edition_)
+- Ubuntu 20.04 (_LTS_)
 
 ### References:
 
@@ -16,8 +16,9 @@
 
 ### Problems List:
 
-| #   | Problem Link                                                                                                                            | Rate  | Description    |
-|-----|-----------------------------------------------------------------------------------------------------------------------------------------|-------|----------------|
-| 1   | [11547 - Automatic Answer](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=2542)            | 1/10  | -              | 
-| 2   | [11172 - Relational Operator](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=2113)         | 1/10  | -              |
-| 3   | [10071 - Back to High School Physics](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=1012) | 1/10  | -              | 
+| #   | Problem Link                                                                                                                            | Rate  | Description                                    | Point(s)            |
+|-----|-----------------------------------------------------------------------------------------------------------------------------------------|-------|------------------------------------------------|---------------------|
+| 1   | [11547 - Automatic Answer](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=2542)            | 1/10  | Excellent and highly recommended for beginners | TestCase, SubString |
+| 2   | [11172 - Relational Operator](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=2113)         | 1/10  | Excellent and highly recommended for beginners | TestCase            |
+| 3   | [10071 - Back to High School Physics](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=1012) | 1/10  | Excellent and highly recommended for beginners | TestCase, Formula   |
+
