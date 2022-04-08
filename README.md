@@ -18,3 +18,4 @@
 | #   | Problem Link                                                                                                                            | Rate  | Description    |
 |-----|-----------------------------------------------------------------------------------------------------------------------------------------|-------|----------------|
 | 1   | [11547 - Automatic Answer](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=2542)            | 1/10  | -              | 
+| 2   | [11172 - Relational Operator](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=2113)         | 1/10  | -              | 
