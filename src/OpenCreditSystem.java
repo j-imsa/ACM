@@ -1,6 +1,3 @@
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.Scanner;
 
 // 11078 - Open Credit System
@@ -16,58 +13,36 @@ public class OpenCreditSystem {
                 scores[i] = scanner.nextInt();
             }
 
-            int maxSenior = maxSenior(scores);
-            int maxJunior = maxJunior(scores);
-            int minSenior = minSenior(scores);
-            int minJunior = minJunior(scores);
+            int maxSeniorIndex = maxSeniorIndex(scores);
+            int maxSenior = scores[maxSeniorIndex];
 
-            if (Math.abs(maxSenior - minJunior) > Math.abs(minSenior - maxJunior)) {
-                System.out.println(maxSenior - minJunior);
-            } else {
-                System.out.println(minSenior - maxJunior);
-            }
+            int minJunior = minJunior(scores, maxSeniorIndex);
+
+            System.out.println(maxSenior - minJunior);
 
             testCase--;
         }
     }
 
-    public static int maxSenior(int[] arr) {
+    public static int maxSeniorIndex(int[] arr) {
         // ignore the last element
         int max = arr[0];
+        int maxIndex = 0;
         for (int i = 0; i < arr.length - 1; i++) {
             if (arr[i] >= max) {
                 max = arr[i];
+                maxIndex = i;
             }
         }
-        return max;
+        return maxIndex;
     }
 
-    public static int maxJunior(int[] arr) {
-        // ignore the first element
-        int max = arr[1];
-        for (int i = 1; i < arr.length; i++) {
-            if (arr[i] >= max) {
-                max = arr[i];
+    public static int minJunior(int[] arr, int maxIndex) {
+        int min = Integer.MAX_VALUE;
+        for (int i = 0; i < arr.length; i++) {
+            if (i <= maxIndex) {
+                continue;
             }
-        }
-        return max;
-    }
-
-    public static int minSenior(int[] arr) {
-        // ignore the last element
-        int min = arr[0];
-        for (int i = 0; i < arr.length - 1; i++) {
-            if (arr[i] <= min) {
-                min = arr[i];
-            }
-        }
-        return min;
-    }
-
-    public static int minJunior(int[] arr) {
-        // ignore the first element
-        int min = arr[1];
-        for (int i = 1; i < arr.length; i++) {
             if (arr[i] <= min) {
                 min = arr[i];
             }
