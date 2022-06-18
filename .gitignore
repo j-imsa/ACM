@@ -102,5 +102,6 @@ fabric.properties
 /bin/
 *.classpath
 *.project
+*.settings
 
 
