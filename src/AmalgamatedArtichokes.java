@@ -1,13 +1,9 @@
-import java.text.DecimalFormat;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Scanner;
 
 // 1709 - Amalgamated Artichokes
 public class AmalgamatedArtichokes {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+		Scanner scanner = new Scanner(System.in);
         while (scanner.hasNext()) {
             int p = scanner.nextInt();
             int a = scanner.nextInt();
