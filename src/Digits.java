@@ -1,4 +1,3 @@
-import java.math.BigInteger;
 import java.util.Scanner;
 
 // 11687 - Digits
@@ -10,15 +9,16 @@ public class Digits {
             if (input.equals("END")) {
                 break;
             }
-            BigInteger x0 = new BigInteger(input);
+
+            String x0 = input;
             int count = 1;
             while (true) {
-                BigInteger x1 = new BigInteger(String.valueOf(x0.toString().length()));
+            	String x1 = String.valueOf(x0.length());
                 if (x0.equals(x1)) {
                     System.out.println(count);
                     break;
                 }
-                BigInteger x2 = new BigInteger(String.valueOf(x1.toString().length()));
+                String x2 = String.valueOf(x1.length());
                 if (x1.equals(x2)) {
                     System.out.println(count+1);
                     break;
