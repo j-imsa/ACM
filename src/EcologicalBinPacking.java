@@ -1,198 +1,69 @@
-import java.util.Arrays;
-import java.util.Scanner;
+import java.util.*;
 
 // 102 - Ecological Bin Packing
 public class EcologicalBinPacking {
-	
+
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
 		while (scanner.hasNext()) {
-			String inputString = scanner.nextLine();
-			String[] inputValuesAsString = inputString.split(" ");
-			Garbage[] garbages = new Garbage[9];
-			for (int i = 0; i < garbages.length; i++) {
-				if (i == 0 || i == 3 || i == 6) {
-					COLOR color = COLOR.BROWN;
-					int binNumber = -1;
-					if (i == 0) {
-						binNumber = 1;
-					} else if (i == 3) {
-						binNumber = 2;
-					} else {
-						binNumber = 3;
-					}
-					garbages[i] = new Garbage(color, binNumber, Integer.valueOf(inputValuesAsString[i]));					
-				} else if (i == 1 || i == 4 || i == 7) {
-					COLOR color = COLOR.GEEN;
-					int binNumber = -1;
-					if (i == 1) {
-						binNumber = 1;
-					} else if (i == 4) {
-						binNumber = 2;
-					} else {
-						binNumber = 3;
-					}
-					garbages[i] = new Garbage(color, binNumber, Integer.valueOf(inputValuesAsString[i]));					
-				} else {
-					COLOR color = COLOR.CLEAR;
-					int binNumber = -1;
-					if (i == 2) {
-						binNumber = 1;
-					} else if (i == 5) {
-						binNumber = 2;
-					} else {
-						binNumber = 3;
-					}
-					garbages[i] = new Garbage(color, binNumber, Integer.valueOf(inputValuesAsString[i]));					
-				}
-			}
+			String input = scanner.nextLine();
+
+			/*
+			 * numbers[0] => B1 numbers[1] => G1 numbers[2] => C1 
+			 * numbers[3] => B2	numbers[4] => G2 numbers[5] => C2 
+			 * numbers[6] => B3 numbers[7] => G3 numbers[8] => C3
+			 * 
+			 * BGC means bin1:B , bin2:G , bin3:C 
+			 * BGC => from bin1(G1, C1) + from bin2(B2 + C2) + from bin3(B3 + G3)
+			 * ...
+			 */
 			
-			// bin1 => min(bin1)
-			// bin2 => max(bin2)
-			// bin3 => remained
+			long[] numbers = Arrays.stream(input.split(" ")).mapToLong(Long::parseLong).toArray();
+
+			HashMap<String, Long> order = new HashMap();
 			
-			String order = "";
-			String order1 = findMinInBin1(garbages);
-			String order2 = finMaxInBin2(garbages);
+			order.put("BGC", numbers[1] + numbers[2] + numbers[3] + numbers[5] + numbers[6] + numbers[7]);
+			order.put("BCG", numbers[1] + numbers[2] + numbers[3] + numbers[4] + numbers[6] + numbers[8]);
+			order.put("GBC", numbers[0] + numbers[2] + numbers[4] + numbers[5] + numbers[6] + numbers[7]);
+			order.put("CBG", numbers[0] + numbers[1] + numbers[4] + numbers[5] + numbers[6] + numbers[8]);
+			order.put("GCB", numbers[0] + numbers[2] + numbers[3] + numbers[4] + numbers[7] + numbers[8]);
+			order.put("CGB", numbers[0] + numbers[1] + numbers[3] + numbers[5] + numbers[7] + numbers[8]);
+
+			order = sortHashMapByValue(order);
 			
-			order = findOrder(order1, order2);
-			
-			System.out.println(order);
+			Map.Entry<String,Long> entry = order.entrySet().iterator().next();
+			 
+			System.out.println(entry.getKey() + " " + entry.getValue());
 		}
-	}
-
-	private static String findOrder(String order1, String order2) {
-		
-		if (order1.length() == 1) {
-			if (order2.length() == 1) {
-				return order1 + order2 + insertLastOrder(order1 + order2);
-			} else if (order2.length() == 2) {
-				order2 = order2.replace(order1, "");
-				if (order2.length() != 1) {
-					order2 = sortByAlphabet(order2);
-				}
-				return order1 + order2 + insertLastOrder(order1 + order2);
-			} else {
-				order2 = order2.replace(order1, "");
-				order2 = sortByAlphabet(order2);
-				return order1 + order2 + insertLastOrder(order1 + order2);
-			}
-		} else if (order1.length() == 2) {
-			if (order2.length() == 1) {
-				order1 = order1.replace(order2, "");
-				order1 = sortByAlphabet(order1);
-				return order1 + order2 + insertLastOrder(order1 + order2);
-			} else if (order2.length() == 2) {
-				order1 = sortByAlphabet(order1);
-				order2 = order2.replace(order1, "");
-				order2 = sortByAlphabet(order2);
-				return order1 + order2 + insertLastOrder(order1 + order2);
-			} else {
-				order1 = sortByAlphabet(order1);
-				order2 = order2.replace(order1, "");
-				order2 = sortByAlphabet(order2);
-				return order1 + order2 + insertLastOrder(order1 + order2);
-			}
-		} else {
-			if (order2.length() == 1) {
-				order1 = order1.replace(order2, "");
-				order1 = sortByAlphabet(order1);
-				return order1 + order2 + insertLastOrder(order1 + order2);
-			} else if (order2.length() == 2) {
-				order1 = sortByAlphabet(order1);
-				order2 = order2.replace(order1, "");
-				order2 = sortByAlphabet(order2);
-				return order1 + order2 + insertLastOrder(order1 + order2);
-			} else {
-				order1 = sortByAlphabet(order1);
-				order2 = order2.replace(order1, "");
-				order2 = sortByAlphabet(order2);
-				return order1 + order2 + insertLastOrder(order1 + order2);
-			}
-		}
-		
-	}
-
-	private static String sortByAlphabet(String str) {
-	    char charArray[] = str.toCharArray();
-	    Arrays.sort(charArray);
-		return charArray[0]+"";
-	}
-
-	private static String insertLastOrder(String order) {
-		String tmp = "BCG";
-		for (int i = 0; i < order.length(); i++) {
-			tmp = tmp.replace(order.charAt(i)+"", "");
-		}
-		return tmp;
-	}
-
-	private static String finMaxInBin2(Garbage[] garbages) {
-		String result = "";
-		int max = Integer.MIN_VALUE;
-		for (Garbage garbage : garbages) {
-			if (garbage.binNumber != 2) {
-				continue;
-			}
-			if (garbage.value >= max) {
-				max = garbage.value;
-				if (garbage.color.equals(COLOR.BROWN)) {
-					result += 'B';
-				}
-				if (garbage.color.equals(COLOR.GEEN)) {
-					result += 'G';
-				}
-				if (garbage.color.equals(COLOR.CLEAR)) {
-					result += 'C';
-				}
-			}
-		}
-		return result;
-	}
-
-	private static String findMinInBin1(Garbage[] garbages) {
-		String result = "";
-		int min = Integer.MAX_VALUE;
-		for (Garbage garbage : garbages) {
-			if (garbage.binNumber != 1) {
-				continue;
-			}
-			if (garbage.value <= min) {
-				min = garbage.value;
-				if (garbage.color.equals(COLOR.BROWN)) {
-					result += 'B';
-				}
-				if (garbage.color.equals(COLOR.GEEN)) {
-					result += 'G';
-				}
-				if (garbage.color.equals(COLOR.CLEAR)) {
-					result += 'C';
-				}
-			}
-		}
-		return result;
-	}
-
-}
-
-enum COLOR {
-	BROWN, GEEN, CLEAR
-}
-
-class Garbage {
-	COLOR color;
-	int binNumber;
-	int value;
-	public Garbage(COLOR color, int binNumber, int value) {
-		super();
-		this.color = color;
-		this.binNumber = binNumber;
-		this.value = value;
 	}
 	
-}
+	 
+    public static HashMap<String, Long> sortHashMapByValue(HashMap<String, Long> hm)
+    {
+        
+        List<Map.Entry<String, Long> > list =
+               new LinkedList<Map.Entry<String, Long> >(hm.entrySet());
+ 
+        // Sort the list
+        Collections.sort(list, new Comparator<Map.Entry<String, Long> >() {
+            public int compare(Map.Entry<String, Long> o1,
+                               Map.Entry<String, Long> o2)
+            {
+            	if (o1.getValue() > o2.getValue()) {
+					return 1;
+				} else if (o1.getValue() < o2.getValue()) {
+					return -1;
+				} else {
+					return (o1.getKey()).compareTo(o2.getKey());					
+				}
+            }
+        });
+         
+        HashMap<String, Long> temp = new LinkedHashMap<String, Long>();
+        for (Map.Entry<String, Long> aa : list) {
+            temp.put(aa.getKey(), aa.getValue());
+        }
+        return temp;
+    }
 
-class RecyclingBin {
-	COLOR color;
-	int value;
 }
