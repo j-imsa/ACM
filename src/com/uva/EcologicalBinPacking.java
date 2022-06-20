@@ -1,3 +1,4 @@
+package com.uva;
 import java.util.*;
 
 // 102 - Ecological Bin Packing
