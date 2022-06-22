@@ -1,3 +1,4 @@
+package com.uva;
 import java.util.Scanner;
 
 // 11547 - Automatic Answer

@@ -1,3 +1,4 @@
+package com.uva;
 import java.util.Scanner;
 
 // 10071 - Back to High School Physics

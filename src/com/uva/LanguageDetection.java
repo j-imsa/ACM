@@ -1,3 +1,4 @@
+package com.uva;
 import java.util.Scanner;
 
 // 12250 - Language Detection

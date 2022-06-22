@@ -1,3 +1,4 @@
+package com.uva;
 import java.util.Scanner;
 
 // 12372 - Packing for Holiday

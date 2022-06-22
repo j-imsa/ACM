@@ -1,3 +1,4 @@
+package com.uva;
 import java.util.Scanner;
 
 // 11614 - Etruscan Warriors Never Play Chess

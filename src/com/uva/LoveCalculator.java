@@ -1,3 +1,4 @@
+package com.uva;
 import java.util.Scanner;
 
 // 10424 - Love Calculator

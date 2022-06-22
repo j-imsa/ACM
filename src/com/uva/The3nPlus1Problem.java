@@ -1,3 +1,4 @@
+package com.uva;
 import java.util.Scanner;
 
 // 100 The 3n + 1 problem
